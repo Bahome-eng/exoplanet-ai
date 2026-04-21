@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.env
+venv/
+node_modules/
+build/
+dist/
+.DS_Store
+.vscode/
+*.log
+predictions.json
+lightcurves/
+*.png

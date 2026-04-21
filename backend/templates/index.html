@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Exoplanet Predictor 🚀</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input {
+            padding: 8px;
+            margin: 5px;
+            width: 150px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>🌌 Exoplanet Predictor</h1>
+
+<div>
+    <label>Planet Period</label><br>
+    <input id="koi_period" value="10"><br>
+
+    <label>Planet Radius</label><br>
+    <input id="koi_prad" value="2"><br>
+
+    <label>Signal-to-Noise</label><br>
+    <input id="koi_model_snr" value="20"><br>
+</div>
+
+<button onclick="predict()">Predict</button>
+
+<div id="result"></div>
+
+<script>
+async function predict() {
+
+    const data = {
+        koi_period: parseFloat(document.getElementById("koi_period").value),
+        koi_time0bk: 200,
+        koi_duration: 2.5,
+        koi_depth: 500,
+        koi_prad: parseFloat(document.getElementById("koi_prad").value),
+        koi_teq: 500,
+        koi_insol: 1.5,
+        koi_model_snr: parseFloat(document.getElementById("koi_model_snr").value),
+        koi_impact: 0.5,
+        koi_steff: 5500,
+        koi_slogg: 4.5,
+        koi_srad: 1,
+        ra: 290,
+        dec: 45,
+        koi_kepmag: 15
+    };
+
+    try {
+        const response = await fetch("http://127.0.0.1:5000/predict", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        document.getElementById("result").innerText =
+            "Prediction: " + result.is_exoplanet +
+            " | Confidence: " + result.confidence;
+
+    } catch (error) {
+        console.error(error);
+        document.getElementById("result").innerText = "Error connecting to API";
+    }
+}
+</script>
+
+</body>
+</html>
