@@ -15,14 +15,14 @@ import numpy as np
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-# Load model
-with open("../models/my_xgb_model.pkl", "rb") as f:
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.abspath(os.path.join(BASE_DIR, "../models/my_xgb_model.pkl"))
+DB_FILE = os.path.join(BASE_DIR, "predictions.json")
+
+with open(MODEL_PATH, "rb") as f:
     model = pickle.load(f)
 
 print("✅ Model loaded!")
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_FILE = os.path.join(BASE_DIR, "predictions.json")
 
 
 def load_predictions():
@@ -374,4 +374,5 @@ def get_lightcurve(filename):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=False)
