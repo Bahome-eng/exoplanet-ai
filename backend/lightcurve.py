@@ -1,5 +1,6 @@
 # backend/lightcurve.py
 
+import os
 import lightkurve as lk
 import matplotlib
 matplotlib.use("Agg")
@@ -11,10 +12,14 @@ from typing import Optional, Tuple
 
 logger = logging.getLogger(__name__)
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 
 class LightcurveGenerator:
-    def __init__(self, dataset_path: str = "../data/koi_data.csv"):
-        self.dataset_path = dataset_path
+    def __init__(self, dataset_path: str = None):
+        self.dataset_path = dataset_path or os.path.abspath(
+            os.path.join(BASE_DIR, "../data/koi_data.csv")
+        )
         self.df = None
         self.load_dataset()
 
