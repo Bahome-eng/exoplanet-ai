@@ -1,0 +1,9 @@
+Flask
+flask-cors
+pandas
+numpy
+matplotlib
+scikit-learn
+xgboost
+lightkurve
+gunicorn
