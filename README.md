@@ -19,6 +19,13 @@ This project uses NASA Kepler candidate data and a trained machine learning mode
 
 ---
 
+## Live Demo
+
+- [Frontend Demo](https://exoplanet-45cbl83t2-bahome-engs-projects.vercel.app/)
+- [Backend API](https://exoplanet-ai-production.up.railway.app)
+
+---
+
 ## Features
 
 ### Prediction Engine
@@ -90,7 +97,7 @@ The model uses the following key numerical features:
 - trained an XGBoost classifier
 - evaluated performance on unseen test data
 - exported the trained model to `my_xgb_model.pkl`
-  
+
 ### Performance
 - model accuracy: about **91%**
 - confidence scores are derived from prediction probabilities
@@ -103,6 +110,7 @@ The model uses the following key numerical features:
 - React
 - Styled Components
 - Recharts
+- Vercel
 
 ### Backend
 - Flask
@@ -111,6 +119,7 @@ The model uses the following key numerical features:
 - NumPy
 - Matplotlib
 - Lightkurve
+- Railway
 
 ### Machine Learning
 - XGBoost
@@ -204,6 +213,10 @@ Save the prediction
 Open Analytics to view updated charts
 Deployment Notes
 
+Frontend deployed on Vercel
+
+Backend deployed on Railway
+
 Before deployment:
 
 make sure requirements.txt is complete
@@ -211,11 +224,6 @@ make sure frontend API URLs point to the deployed backend, not localhost
 add ignored files to .gitignore
 remove unused debug prints
 confirm predictions.json and lightcurves/ are handled properly in production
-
-Recommended deployment:
-
-Frontend: Vercel or Netlify
-Backend: Render or Railway
 Future Improvements
 add support for more datasets
 compare multiple ML models
