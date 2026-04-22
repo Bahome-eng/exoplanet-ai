@@ -1,6 +1,6 @@
 class DatabaseService {
     constructor() {
-      this.baseURL = 'http://127.0.0.1:5000';
+      this.baseURL = 'https://exoplanet-ai-production.up.railway.app';
     }
   
     async savePrediction(predictionData) {
